@@ -17,9 +17,6 @@ public class Cadastro extends javax.swing.JFrame{
         initComponents();
     }
     
-    public Login retornarInicio(){
-        return new Login();
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,10 +40,10 @@ public class Cadastro extends javax.swing.JFrame{
         senha = new javax.swing.JPasswordField();
         usuario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         btnCriar = new javax.swing.JButton();
         lblVoltar = new javax.swing.JLabel();
         erro = new javax.swing.JLabel();
+        instantegram = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -92,11 +89,6 @@ public class Cadastro extends javax.swing.JFrame{
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Brush Script MT", 0, 36)); // NOI18N
-        jLabel8.setForeground(java.awt.SystemColor.activeCaption);
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("InstanteGram");
-
         btnCriar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCriar.setText("Criar");
         btnCriar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,6 +108,11 @@ public class Cadastro extends javax.swing.JFrame{
 
         erro.setForeground(new java.awt.Color(255, 51, 0));
         erro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        instantegram.setFont(new java.awt.Font("Segoe Script", 1, 24)); // NOI18N
+        instantegram.setForeground(new java.awt.Color(0, 153, 204));
+        instantegram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        instantegram.setText("InstanteGram");
 
         javax.swing.GroupLayout panelCadastroLayout = new javax.swing.GroupLayout(panelCadastro);
         panelCadastro.setLayout(panelCadastroLayout);
@@ -139,7 +136,6 @@ public class Cadastro extends javax.swing.JFrame{
                                 .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
                             .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +145,8 @@ public class Cadastro extends javax.swing.JFrame{
                                 .addComponent(radioF))
                             .addComponent(jLabel1)
                             .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(instantegram)))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(erro, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -158,10 +155,12 @@ public class Cadastro extends javax.swing.JFrame{
         panelCadastroLayout.setVerticalGroup(
             panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroLayout.createSequentialGroup()
-                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41)
+                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(instantegram)))
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(41, 41, 41)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -209,7 +208,7 @@ public class Cadastro extends javax.swing.JFrame{
 
     private void lblVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVoltarMouseClicked
         this.setVisible(false);
-        retornarInicio().setVisible(true);
+        new Login().setVisible(true);
     }//GEN-LAST:event_lblVoltarMouseClicked
 
     private void radioMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioMMouseClicked
@@ -243,7 +242,7 @@ public class Cadastro extends javax.swing.JFrame{
             fw.write(usuario.getText()+";"+key+";"+nome.getText()+";"+sobrenome.getText()+";"+sexo+"\n");
             fw.close();
             this.setVisible(false);
-            retornarInicio().setVisible(true);
+            new Login().setVisible(true);
         }catch(IOException E){
             erro.setText("Ocorreu um erro! Por favor, tente novamente.");
         }
@@ -288,6 +287,7 @@ public class Cadastro extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCriar;
     private javax.swing.JLabel erro;
+    private javax.swing.JLabel instantegram;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -295,7 +295,6 @@ public class Cadastro extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblVoltar;
     private javax.swing.JTextField nome;
     private javax.swing.JPanel panelCadastro;

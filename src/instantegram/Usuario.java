@@ -10,9 +10,9 @@ package instantegram;
  * @author proae
  */
 public class Usuario {
-    private String nome;
-    private String sobrenome;
-    private String sexo;
+    private final String nome;
+    private final String sobrenome;
+    private final String sexo;
 
     public Usuario(String nome, String sobrenome, String sexo) {
         this.nome = nome;

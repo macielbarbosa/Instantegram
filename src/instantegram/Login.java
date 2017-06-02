@@ -31,7 +31,6 @@ public class Login extends javax.swing.JFrame{
 
         loginPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -39,6 +38,7 @@ public class Login extends javax.swing.JFrame{
         usuario = new javax.swing.JTextField();
         senha = new javax.swing.JPasswordField();
         alerta = new javax.swing.JLabel();
+        instantegram = new javax.swing.JLabel();
         lblCriar = new javax.swing.JLabel();
         btnCriar = new javax.swing.JButton();
 
@@ -52,11 +52,6 @@ public class Login extends javax.swing.JFrame{
         loginPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Brush Script MT", 0, 36)); // NOI18N
-        jLabel1.setForeground(java.awt.SystemColor.activeCaption);
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("InstanteGram");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -81,6 +76,11 @@ public class Login extends javax.swing.JFrame{
         alerta.setForeground(new java.awt.Color(255, 0, 51));
         alerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        instantegram.setFont(new java.awt.Font("Segoe Script", 1, 24)); // NOI18N
+        instantegram.setForeground(new java.awt.Color(0, 153, 204));
+        instantegram.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        instantegram.setText("InstanteGram");
+
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
         loginPanelLayout.setHorizontalGroup(
@@ -88,13 +88,6 @@ public class Login extends javax.swing.JFrame{
             .addGroup(loginPanelLayout.createSequentialGroup()
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(loginPanelLayout.createSequentialGroup()
-                            .addGap(59, 59, 59)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
                             .addGap(55, 55, 55)
                             .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,18 +99,25 @@ public class Login extends javax.swing.JFrame{
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(alerta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(alerta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(loginPanelLayout.createSequentialGroup()
+                            .addGap(118, 118, 118)
+                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(loginPanelLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(instantegram))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         loginPanelLayout.setVerticalGroup(
             loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginPanelLayout.createSequentialGroup()
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(instantegram))
                 .addGap(36, 36, 36)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
@@ -260,7 +260,7 @@ public class Login extends javax.swing.JFrame{
     private javax.swing.JLabel alerta;
     private javax.swing.JButton btnCriar;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel instantegram;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

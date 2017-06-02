@@ -5,3 +5,4 @@ macinho;mbs;Maciel;Barbosa;M
 dapraia;mipibu;Felipe;Hygor;M
 xande;algebra;Alexandre;Xandão;M
 admin;password;admim;admim;F
+jc;1223;josé;blabla;M
