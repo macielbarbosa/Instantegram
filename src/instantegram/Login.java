@@ -16,6 +16,7 @@ import java.util.StringTokenizer;
  */
 public class Login extends javax.swing.JFrame{
     
+    
     public Login() {
         initComponents();
     }
@@ -255,7 +256,7 @@ public class Login extends javax.swing.JFrame{
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alerta;
     private javax.swing.JButton btnCriar;

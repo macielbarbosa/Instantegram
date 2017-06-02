@@ -10,16 +10,22 @@ package instantegram;
  * @author proae
  */
 public class Usuario {
-    private final String nome;
-    private final String sobrenome;
-    private final String sexo;
+    private String nome;
+    private String sobrenome;
+    private String sexo;
+
+    public Usuario() {
+        this.nome = "nome";
+        this.sobrenome = "sobrenome";
+        this.sexo = "sexo";
+    }
 
     public Usuario(String nome, String sobrenome, String sexo) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.sexo = sexo;
     }
-
+    
     public String getNome() {
         return nome;
     }
@@ -30,6 +36,18 @@ public class Usuario {
 
     public String getSexo() {
         return sexo;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
     
 }
