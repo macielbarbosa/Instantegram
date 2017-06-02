@@ -12,9 +12,9 @@ package instantegram;
 public class Usuario {
     private String nome;
     private String sobrenome;
-    private char sexo;
+    private String sexo;
 
-    public Usuario(String nome, String sobrenome, char sexo) {
+    public Usuario(String nome, String sobrenome, String sexo) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.sexo = sexo;
@@ -28,7 +28,7 @@ public class Usuario {
         return sobrenome;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
     
