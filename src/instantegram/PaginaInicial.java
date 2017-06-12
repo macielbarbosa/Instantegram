@@ -9,16 +9,14 @@ package instantegram;
  *
  * @author UFRN
  */
-public class PaginaInicial extends javax.swing.JFrame implements Instantegram{
+public class PaginaInicial extends javax.swing.JFrame{
 
     
     public PaginaInicial() {
         initComponents();
     }
     public void addUsuario(Usuario u){
-        Instantegram.usuario.setNome(u.getNome());
-        Instantegram.usuario.setSobrenome(u.getSobrenome());
-        Instantegram.usuario.setSexo(u.getSexo());
+        
         String vogalSexo;
         if(u.getSexo().equals("M"))
             vogalSexo = "o";
@@ -67,7 +65,7 @@ public class PaginaInicial extends javax.swing.JFrame implements Instantegram{
 
         perfil.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         perfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/perfil.png"))); // NOI18N
+        perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/perfil-m.png"))); // NOI18N
         perfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         perfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -306,19 +304,7 @@ public class PaginaInicial extends javax.swing.JFrame implements Instantegram{
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel perfil;

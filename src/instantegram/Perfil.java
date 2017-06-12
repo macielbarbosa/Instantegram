@@ -9,7 +9,7 @@ package instantegram;
  *
  * @author RESIDENTE
  */
-public class Perfil extends javax.swing.JFrame implements Instantegram{
+public class Perfil extends javax.swing.JFrame{
 
     /**
      * Creates new form Perfil
@@ -272,9 +272,7 @@ public class Perfil extends javax.swing.JFrame implements Instantegram{
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         this.dispose();
-        PaginaInicial pi = new PaginaInicial();
-        pi.addUsuario(Instantegram.usuario);
-        pi.setVisible(true);
+        new Login().setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
 
     /**

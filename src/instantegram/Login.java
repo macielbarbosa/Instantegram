@@ -172,7 +172,7 @@ public class Login extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarMouseClicked
-        this.setVisible(false);
+        this.dispose();
         Cadastro c = new Cadastro();
         c.setVisible(true);
     }//GEN-LAST:event_btnCriarMouseClicked
