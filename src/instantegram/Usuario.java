@@ -5,6 +5,8 @@
  */
 package instantegram;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author proae
@@ -13,17 +15,29 @@ public class Usuario {
     private String nome;
     private String sobrenome;
     private String sexo;
-
-    public Usuario() {
-        this.nome = "nome";
-        this.sobrenome = "sobrenome";
-        this.sexo = "sexo";
-    }
+    private ArrayList<Publicacao> publicacoes;
+    private ArrayList<Usuario> seguidores;
+    private ArrayList<Usuario> seguidos;
 
     public Usuario(String nome, String sobrenome, String sexo) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.sexo = sexo;
+        this.publicacoes = new ArrayList<>();
+        this.seguidores = new ArrayList<>();
+        this.seguidos = new ArrayList<>();
+    }
+    
+    public void addPublicacao(Publicacao publicacao){
+        this.publicacoes.add(publicacao);
+    }
+    
+    public void addSeguidor(Usuario usuario){
+        this.seguidores.add(usuario);
+    }
+    
+    public void addSeguidos(Usuario usuario){
+        this.seguidos.add(usuario);
     }
     
     public String getNome() {
@@ -36,18 +50,6 @@ public class Usuario {
 
     public String getSexo() {
         return sexo;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
     
 }

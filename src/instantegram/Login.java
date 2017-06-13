@@ -1,9 +1,9 @@
 package instantegram;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.File;
 import java.io.IOException;
-import java.util.StringTokenizer;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -178,44 +178,16 @@ public class Login extends javax.swing.JFrame{
     }//GEN-LAST:event_btnCriarMouseClicked
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        BufferedReader bf;
-        StringTokenizer st;
-        String linha, key = "", loginUsuario, loginKey;
-        
-        for(int i=0; i<senha.getPassword().length;i++)
-            key+=senha.getPassword()[i];
-        if(usuario.getText().isEmpty()||key.isEmpty()){
-            alerta.setText("Por favor, preencha todos os campos");
+        if(this.usuario.getText().isEmpty()||this.senha.getPassword().length==0){
+            this.alerta.setText("Por favor, preencha todos os campos");
             return;
         }
-        try{
-            bf = new BufferedReader(new FileReader("dados"+File.separator+"usuarios.txt"));
-            linha = bf.readLine();
-            while(linha!=null){    
-                st = new StringTokenizer(linha,";");
-                loginUsuario = st.nextToken();                
-                loginKey = st.nextToken();
-                if(loginUsuario.equals(usuario.getText()) && loginKey.equals(key)){ 
-                    PaginaInicial inicio = new PaginaInicial();
-                    inicio.addUsuario(new Usuario(st.nextToken(),st.nextToken(),st.nextToken()));
-                    this.dispose();
-                    inicio.setVisible(true);
-                    bf.close();
-                    break;
-                }
-                else if(loginUsuario.equals(usuario.getText()) && !loginKey.equals(key)){
-                    alerta.setText("Senha incorreta");
-                    bf.close();
-                    break;
-                }
-                linha = bf.readLine();
-                if(linha==null){
-                    alerta.setText("Usuário não cadastrado");
-                    bf.close();
-                }
-            }
-        }catch(IOException E){
-            alerta.setText("Houve um erro na leitura do banco de dados.");
+        try {
+            ObjectOutputStream saida = new ObjectOutputStream(new Socket("127.0.0.1", 12345).getOutputStream());
+            saida.writeObject(this.usuario);
+            saida.writeObject(this.senha);
+        } catch (IOException ex) {
+            this.alerta.setText("Tente novamente");
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 
