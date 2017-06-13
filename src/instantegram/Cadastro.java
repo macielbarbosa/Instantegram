@@ -7,6 +7,11 @@ package instantegram;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author proae
@@ -37,8 +42,8 @@ public class Cadastro extends javax.swing.JFrame{
         radioM = new javax.swing.JRadioButton();
         radioF = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        senha = new javax.swing.JPasswordField();
-        usuario = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
+        login = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnCriar = new javax.swing.JButton();
         lblVoltar = new javax.swing.JLabel();
@@ -65,7 +70,7 @@ public class Cadastro extends javax.swing.JFrame{
         jLabel4.setText("Sexo");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Nome de usuário");
+        jLabel5.setText("Login");
 
         radioM.setBackground(new java.awt.Color(255, 255, 255));
         radioM.setSelected(true);
@@ -123,20 +128,20 @@ public class Cadastro extends javax.swing.JFrame{
                     .addGroup(panelCadastroLayout.createSequentialGroup()
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelCadastroLayout.createSequentialGroup()
-                                    .addGap(79, 79, 79)
-                                    .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel7)))
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblVoltar)
-                                .addComponent(jLabel5)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                                        .addGap(79, 79, 79)
+                                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel7)))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(lblVoltar, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelCadastroLayout.createSequentialGroup()
@@ -144,7 +149,7 @@ public class Cadastro extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(radioF))
                             .addComponent(jLabel1)
-                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(instantegram)))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
@@ -178,10 +183,10 @@ public class Cadastro extends javax.swing.JFrame{
                 .addGap(19, 19, 19)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(32, 32, 32)
                 .addComponent(btnCriar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,25 +231,33 @@ public class Cadastro extends javax.swing.JFrame{
     }//GEN-LAST:event_radioFMouseClicked
 
     private void btnCriarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarMouseClicked
-        if(nome.getText().isEmpty()||sobrenome.getText().isEmpty()||usuario.getText().isEmpty()||senha.getPassword().length==0){
+        if(nome.getText().isEmpty()||sobrenome.getText().isEmpty()||login.getText().isEmpty()||password.getPassword().length==0){
             erro.setText("Por favor, preencha todos os campos!");
             return;
         }
-        String sexo,key = "";
+        String sexo,senha = "";
         if(radioM.isSelected())
             sexo = "M"; 
         else
             sexo = "F";
-        for(int i=0; i<senha.getPassword().length;i++)
-            key+=senha.getPassword()[i];
-        try{
-            FileWriter fw = new FileWriter("dados"+File.separator+"usuarios.txt",true);
-            fw.write(usuario.getText()+";"+key+";"+nome.getText()+";"+sobrenome.getText()+";"+sexo+"\n");
-            fw.close();
-            this.setVisible(false);
-            new Login().setVisible(true);
-        }catch(IOException E){
-            erro.setText("Ocorreu um erro! Por favor, tente novamente.");
+        for(int i=0; i<password.getPassword().length;i++)
+            senha+=password.getPassword()[i];
+        Socket servidor;
+        try {
+            servidor = new Socket("10.10.5.191", 12345);
+            ObjectOutputStream saida = new ObjectOutputStream(servidor.getOutputStream());
+            ObjectInputStream entrada = new ObjectInputStream(servidor.getInputStream());
+            saida.writeUTF("cadastro");
+            saida.writeObject((Usuario)new Usuario(nome.getText(),sobrenome.getText(),sexo,login.getText(),senha));
+            if(entrada.readBoolean()==true){
+                this.dispose();
+                new Login().setVisible(true);
+            }
+            else{
+                this.erro.setText("Digite outro login");
+            }
+        } catch (IOException ex) {
+            erro.setText("Tente novamente");
         }
         
     }//GEN-LAST:event_btnCriarMouseClicked
@@ -296,12 +309,12 @@ public class Cadastro extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lblVoltar;
+    private javax.swing.JTextField login;
     private javax.swing.JTextField nome;
     private javax.swing.JPanel panelCadastro;
+    private javax.swing.JPasswordField password;
     private javax.swing.JRadioButton radioF;
     private javax.swing.JRadioButton radioM;
-    private javax.swing.JPasswordField senha;
     private javax.swing.JTextField sobrenome;
-    private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

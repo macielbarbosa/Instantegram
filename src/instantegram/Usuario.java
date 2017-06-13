@@ -15,14 +15,18 @@ public class Usuario {
     private String nome;
     private String sobrenome;
     private String sexo;
+    private String login;
+    private String senha;
     private ArrayList<Publicacao> publicacoes;
     private ArrayList<Usuario> seguidores;
     private ArrayList<Usuario> seguidos;
 
-    public Usuario(String nome, String sobrenome, String sexo) {
+    public Usuario(String nome, String sobrenome, String sexo, String login, String Senha) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.sexo = sexo;
+        this.login = login;
+        this.senha = senha;
         this.publicacoes = new ArrayList<>();
         this.seguidores = new ArrayList<>();
         this.seguidos = new ArrayList<>();
@@ -38,6 +42,14 @@ public class Usuario {
     
     public void addSeguidos(Usuario usuario){
         this.seguidos.add(usuario);
+    }
+    
+    public String getSenha() {
+        return senha;
+    }
+    
+    public String getLogin() {
+        return login;
     }
     
     public String getNome() {

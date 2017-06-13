@@ -1,5 +1,6 @@
 package instantegram;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -16,11 +17,9 @@ import java.util.logging.Logger;
  */
 public class Login extends javax.swing.JFrame{
     
-    
     public Login() {
         initComponents();
     }
-    public Login retornarInicio(){return this;};
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -178,15 +177,28 @@ public class Login extends javax.swing.JFrame{
     }//GEN-LAST:event_btnCriarMouseClicked
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+
         if(this.usuario.getText().isEmpty()||this.senha.getPassword().length==0){
             this.alerta.setText("Por favor, preencha todos os campos");
             return;
         }
         try {
-            ObjectOutputStream saida = new ObjectOutputStream(new Socket("127.0.0.1", 12345).getOutputStream());
+            Socket servidor = new Socket("10.10.5.191", 12345);
+            ObjectOutputStream saida = new ObjectOutputStream(servidor.getOutputStream());
             saida.writeObject(this.usuario);
             saida.writeObject(this.senha);
+            Usuario usuario = (Usuario) new ObjectInputStream(servidor.getInputStream()).readObject();
+            servidor.close();
+            if(usuario!=null) {
+                this.dispose();
+                new Home().addUsuario(usuario);
+            }
+            else{
+                this.alerta.setText("Usuário ou senha incorreta");
+            }
         } catch (IOException ex) {
+            this.alerta.setText("Tente novamente");
+        } catch (ClassNotFoundException ex) {
             this.alerta.setText("Tente novamente");
         }
     }//GEN-LAST:event_btnLoginMouseClicked
